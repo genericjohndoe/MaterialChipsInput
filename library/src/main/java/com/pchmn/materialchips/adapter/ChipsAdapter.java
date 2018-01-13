@@ -1,6 +1,8 @@
 package com.pchmn.materialchips.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -50,6 +52,10 @@ public class ChipsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         initEditText();
     }
 
+    public ChipsInputEditText getEditText(){
+        return mEditText;
+    }
+
     private class ItemViewHolder extends RecyclerView.ViewHolder {
 
         private final ChipView chipView;
@@ -83,14 +89,13 @@ public class ChipsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         // edit text
         if(position == mChipList.size()) {
-            if(mChipList.size() == 0)
-                mEditText.setHint(mHintLabel);
+            if(mChipList.size() == 0) mEditText.setHint(mHintLabel);
 
             // auto fit edit text
             autofitEditText();
         }
         // chip
-        else if(getItemCount() > 1) {
+        else if (getItemCount() > 1) {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             itemViewHolder.chipView.inflate(getItem(position));
             // handle click
@@ -109,8 +114,7 @@ public class ChipsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public int getItemViewType(int position) {
-        if (position == mChipList.size())
-            return TYPE_EDIT_TEXT;
+        if (position == mChipList.size()) return TYPE_EDIT_TEXT;
 
         return TYPE_ITEM;
     }
@@ -130,7 +134,7 @@ public class ChipsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         mEditText.setImeOptions(EditorInfo.IME_FLAG_NO_EXTRACT_UI);
         mEditText.setPrivateImeOptions("nm");
         // no suggestion
-        mEditText.setInputType(InputType.TYPE_TEXT_VARIATION_FILTER | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+        //mEditText.setInputType(InputType.TYPE_TEXT_VARIATION_FILTER | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 
         // handle back space
         mEditText.setOnKeyListener(new View.OnKeyListener() {

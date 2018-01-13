@@ -13,6 +13,12 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
+        <com.pchmn.materialchips.ChipsInput
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/chips_input"
+            android:background="@color/colorPrimary"></com.pchmn.materialchips.ChipsInput>
+
         <!-- first line -->
         <LinearLayout
             android:orientation="horizontal"

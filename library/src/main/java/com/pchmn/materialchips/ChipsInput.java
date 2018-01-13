@@ -221,6 +221,10 @@ public class ChipsInput extends ScrollViewMaxHeight {
         return editText;
     }
 
+    public ChipsInputEditText getAccessToEditText(){
+        return mChipsAdapter.getEditText();
+    }
+
     public DetailedChipView getDetailedChipView(ChipInterface chip) {
         return new DetailedChipView.Builder(mContext)
                 .chip(chip)

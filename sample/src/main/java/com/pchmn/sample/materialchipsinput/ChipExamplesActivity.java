@@ -4,11 +4,16 @@ import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.pchmn.materialchips.ChipView;
+import com.pchmn.materialchips.ChipsInput;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,6 +29,8 @@ public class ChipExamplesActivity extends AppCompatActivity {
     @BindView(R.id.chip5) ChipView mChip5;
     @BindView(R.id.chip6) ChipView mChip6;
     @BindView(R.id.chip7) ChipView mChip7;
+    @BindView(R.id.chips_input)
+    ChipsInput chipsInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,5 +106,24 @@ public class ChipExamplesActivity extends AppCompatActivity {
 
         mLayout.addView(chipView1);
         mLayout.addView(chipView2);
+        if (chipsInput.getAccessToEditText() != null){
+            Log.i("Sample", "edit text is not null");
+        }
+        chipsInput.getAccessToEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Log.i("Sample", ""+s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 }
